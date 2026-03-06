@@ -137,11 +137,11 @@ if uploaded_file is not None:
             
             fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8), gridspec_kw={'height_ratios': [1, 3]})
             plt.subplots_adjust(hspace=0.4)
-            ax1.set_title("打呼時間分佈圖 (Snore Timeline)", fontsize=14, fontweight='bold')
+            ax1.set_title("Snore Events Timeline", fontsize=16, fontweight='bold')
             for start, end in snore_events: ax1.axvspan(start, end, color='red', alpha=0.5)
             ax1.set_xlim(0, time_axis[-1]); ax1.set_yticks([]); ax1.set_xlabel("Time (seconds)")
             
-            ax2.set_title("聲學波形與 AI 標記分析", fontsize=14, fontweight='bold')
+            ax2.set_title("Acoustic Waveform & AI Prediction", fontsize=16, fontweight='bold')
             ax2.plot(time_axis, full_wave, color='lightgray', linewidth=0.5)
             for start, end in snore_events:
                 s_idx, e_idx = int(start * sr / DOWNSAMPLE_FACTOR), int(end * sr / DOWNSAMPLE_FACTOR)
@@ -196,4 +196,5 @@ if uploaded_file is not None:
                 df_events = pd.DataFrame(event_data)
                 st.dataframe(df_events, use_container_width=True)
             else:
+
                 st.info("太棒了！這段錄音中沒有偵測到任何打呼聲。")
